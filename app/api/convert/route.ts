@@ -2,11 +2,12 @@ import { NextRequest, NextResponse } from 'next/server'
 import sharp from 'sharp'
 import JSZip from 'jszip'
 
-export async function GET() {
+export async function handler() {
+  console.log('GET /api/convert called');
   return NextResponse.json({
     status: 200,
     message: 'Welcome to Experiment',
-  })
+  });
 }
 
 export async function POST(req: NextRequest) {
