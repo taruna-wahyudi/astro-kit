@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card"
 import { ThemeToggle } from "@/components/theme-toggle"
 import Link from "next/link"
-import { ImageIcon, ImageDown, CropIcon, Paintbrush2, Sparkles } from "lucide-react"
+import {ImageIcon, CropIcon, Maximize2, Palette} from "lucide-react"
 
 const features = [
   {
@@ -14,7 +14,7 @@ const features = [
   {
     title: "Resize Images",
     description: "Perfectly resize your images while maintaining quality. Batch processing available.",
-    icon: ImageDown,
+    icon: Maximize2,
     href: "/resize",
     gradient: "from-purple-500/20 to-pink-400/20"
   },
@@ -28,7 +28,7 @@ const features = [
   {
     title: "Edit Images",
     description: "Professional-grade tools for enhancing and editing your images.",
-    icon: Paintbrush2,
+    icon: Palette,
     href: "/edit",
     gradient: "from-green-500/20 to-emerald-400/20"
   }
@@ -72,7 +72,7 @@ export default function Home() {
 
                 <div className="relative flex flex-col items-center text-center space-y-4">
                   <div className="p-3 rounded-2xl bg-primary/5 group-hover:bg-primary/10 transition-colors duration-300">
-                    <feature.icon className="w-8 h-8 text-primary" />
+                    <feature.icon className="w-12 h-12 text-primary" />
                   </div>
                   <h2 className="text-xl font-semibold">{feature.title}</h2>
                   <p className="text-muted-foreground text-sm">{feature.description}</p>
