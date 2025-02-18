@@ -25,7 +25,7 @@ To run this application locally, follow the steps below:
 
 2. Navigate into the project directory:
     ```bash
-   cd astro-lot
+   cd astro-kit
 
 3. Install the dependencies:
     ```bash
