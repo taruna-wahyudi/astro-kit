@@ -20,7 +20,7 @@ const features = [
   },
   {
     title: "Compress Images",
-    description: "Reduce image size without compromising quality using our smart compression tool. Optimize your images for faster loading and better performance.",
+    description: "Reduce image size without compromising quality using our smart compression tool.",
     icon: FileHeart,
     href: "/compress",
     gradient: "from-orange-500/20 to-amber-400/20"
