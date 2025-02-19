@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card"
 import { ThemeToggle } from "@/components/theme-toggle"
 import Link from "next/link"
-import {ImageIcon, CropIcon, Maximize2, Palette} from "lucide-react"
+import {ImageIcon, Maximize2, Palette, FileHeart} from "lucide-react"
 
 const features = [
   {
@@ -19,10 +19,10 @@ const features = [
     gradient: "from-purple-500/20 to-pink-400/20"
   },
   {
-    title: "Crop Images",
-    description: "Precisely crop and adjust your images with our intuitive cropping tool.",
-    icon: CropIcon,
-    href: "/crop",
+    title: "Compress Images",
+    description: "Reduce image size without compromising quality using our smart compression tool. Optimize your images for faster loading and better performance.",
+    icon: FileHeart,
+    href: "/compress",
     gradient: "from-orange-500/20 to-amber-400/20"
   },
   {
