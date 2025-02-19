@@ -1,5 +1,3 @@
-"use client"
-
 import { useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { Card } from './ui/card'
@@ -11,7 +9,7 @@ interface FileDropzoneProps {
   maxFiles?: number
 }
 
-export function FileDropzone({ onFilesDrop, accept, maxFiles = 10 }: FileDropzoneProps) {
+export function FileDropzone({ onFilesDrop, accept, maxFiles = 9999 }: FileDropzoneProps) {
   const onDrop = useCallback((acceptedFiles: File[]) => {
     onFilesDrop(acceptedFiles)
   }, [onFilesDrop])

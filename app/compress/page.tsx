@@ -13,13 +13,36 @@ export default function CompressPage() {
     const [files, setFiles] = useState<File[]>([]);
     const [quality, setQuality] = useState<number>(80);
     const [compressedFiles, setCompressedFiles] = useState<File[]>([]);
-    const [isCompressing, setIsCompressing] = useState<boolean>(false);
+    const [isCompressing, setIsCompressing] = useState<boolean>(false)
+    const [progress, setProgress] = useState<Record<string, number>>({})
     const { toast } = useToast();
 
     const handleFilesDrop = (newFiles: File[]) => {
-        setFiles(newFiles);
-        setCompressedFiles([]); // Reset compressed files when new files are uploaded
-    };
+        setFiles(newFiles)
+
+        newFiles.forEach((file) => {
+            const reader = new FileReader()
+
+            reader.onprogress = (event) => {
+                if (event.lengthComputable) {
+                    const percentLoaded = (event.loaded / event.total) * 100
+                    setProgress((prev) => ({
+                        ...prev,
+                        [file.name]: percentLoaded
+                    }))
+                }
+            }
+
+            reader.onloadend = () => {
+                setProgress((prev) => ({
+                    ...prev,
+                    [file.name]: 100
+                }))
+            }
+
+            reader.readAsArrayBuffer(file)
+        })
+    }
 
     const handleCompress = async () => {
         if (!files.length || quality < 1 || quality > 100) {

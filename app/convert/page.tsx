@@ -19,11 +19,29 @@ export default function ConvertPage() {
 
   const handleFilesDrop = (newFiles: File[]) => {
     setFiles(newFiles)
-    const initialProgress = newFiles.reduce((acc, file) => {
-      acc[file.name] = 0
-      return acc
-    }, {} as Record<string, number>)
-    setProgress(initialProgress)
+
+    newFiles.forEach((file) => {
+      const reader = new FileReader()
+
+      reader.onprogress = (event) => {
+        if (event.lengthComputable) {
+          const percentLoaded = (event.loaded / event.total) * 100
+          setProgress((prev) => ({
+            ...prev,
+            [file.name]: percentLoaded
+          }))
+        }
+      }
+
+      reader.onloadend = () => {
+        setProgress((prev) => ({
+          ...prev,
+          [file.name]: 100
+        }))
+      }
+
+      reader.readAsArrayBuffer(file)
+    })
   }
 
   const handleConvert = async () => {
@@ -89,10 +107,10 @@ export default function ConvertPage() {
         </div>
 
         <FileDropzone
-          onFilesDrop={handleFilesDrop}
-          accept={{
-            'image/*': ['.png', '.jpg', '.jpeg', '.webp', '.avif']
-          }}
+            onFilesDrop={handleFilesDrop}
+            accept={{
+              'image/*': ['.png', '.jpg', '.jpeg', '.webp', '.avif']
+            }}
         />
 
         <div className="space-y-4">
@@ -105,16 +123,17 @@ export default function ConvertPage() {
           ))}
         </div>
 
+
         <div className="flex gap-4">
           <Select value={format} onValueChange={setFormat}>
             <SelectTrigger className="w-[200px]">
-              <SelectValue placeholder="Select format" />
+              <SelectValue placeholder="Select format"/>
             </SelectTrigger>
             <SelectContent>
               {SUPPORTED_FORMATS.map(format => (
-                <SelectItem key={format} value={format}>
-                  {format.toUpperCase()}
-                </SelectItem>
+                  <SelectItem key={format} value={format}>
+                    {format.toUpperCase()}
+                  </SelectItem>
               ))}
             </SelectContent>
           </Select>
